@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {GameTypes} from "../../const";
+import questionGenreProp from "./question-genre-prop";
 
 class QuestionGenre extends PureComponent {
   constructor(props) {
@@ -11,7 +11,7 @@ class QuestionGenre extends PureComponent {
   }
 
   render() {
-    const {onAnswer, question, renderPlayer} = this.props;
+    const {onAnswer, question, renderPlayer, children} = this.props;
     const {answers: userAnswers} = this.state;
     const {answers, genre} = question;
 
@@ -27,11 +27,7 @@ class QuestionGenre extends PureComponent {
             <circle className="timer__line" cx="390" cy="390" r="370" style={{filter: `url(#blur)`, transform: `rotate(-90deg) scaleY(-1)`, transformOrigin: `center`}}/>
           </svg>
 
-          <div className="game__mistakes">
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-          </div>
+          {children}
         </header>
 
         <section className="game__screen">
@@ -73,15 +69,9 @@ class QuestionGenre extends PureComponent {
 
 QuestionGenre.propTypes = {
   onAnswer: PropTypes.func.isRequired,
-  question: PropTypes.shape({
-    answers: PropTypes.arrayOf(PropTypes.shape({
-      src: PropTypes.string.isRequired,
-      genre: PropTypes.string.isRequired,
-    })),
-    type: PropTypes.oneOf([GameTypes.ARTIST, GameTypes.GENRE]).isRequired,
-    genre: PropTypes.string.isRequired,
-  }),
+  question: questionGenreProp,
   renderPlayer: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default QuestionGenre;
