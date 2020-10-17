@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {GameTypes} from "../../const";
+import questionArtistProp from "./question-artist.prop";
 
 const QuestionArtist = (props) => {
-  const {onAnswer, question, renderPlayer} = props;
+  const {onAnswer, question, renderPlayer, children} = props;
   const {song, answers} = question;
 
   return (
@@ -19,11 +19,7 @@ const QuestionArtist = (props) => {
             style={{filter: `url(#blur)`, transform: `rotate(-90deg) scaleY(-1)`, transformOrigin: `center`}}/>
         </svg>
 
-        <div className="game__mistakes">
-          <div className="wrong" />
-          <div className="wrong" />
-          <div className="wrong" />
-        </div>
+        {children}
       </header>
 
       <section className="game__screen">
@@ -59,18 +55,9 @@ const QuestionArtist = (props) => {
 
 QuestionArtist.propTypes = {
   onAnswer: PropTypes.func.isRequired,
-  question: PropTypes.shape({
-    song: PropTypes.shape({
-      src: PropTypes.string.isRequired,
-      artist: PropTypes.string.isRequired
-    }),
-    answers: PropTypes.arrayOf(PropTypes.shape({
-      artist: PropTypes.string.isRequired,
-      picture: PropTypes.string.isRequired,
-    })),
-    type: PropTypes.oneOf([GameTypes.GENRE, GameTypes.ARTIST]).isRequired,
-  }),
+  question: questionArtistProp,
   renderPlayer: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default QuestionArtist;

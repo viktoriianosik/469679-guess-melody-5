@@ -1,15 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import WelcomeScreen from "../welcome-screen/welcome-screen";
 import Login from "../login/login";
 import Lose from "../lose/lose";
 import ResultSuccess from "../result-success/result-success";
 import GameScreen from "../game-screen/game-screen";
+import {MAX_MISTAKE_COUNT} from "../../const";
 
-const App = (props) => {
-  const {errorsCount, questions} = props;
-
+const App = () => {
   return (
     <BrowserRouter>
       <Switch>
@@ -18,7 +16,7 @@ const App = (props) => {
           render={({history}) => (
             <WelcomeScreen
               onPlayButtonClick={() => history.push(`/game`)}
-              errorsCount={errorsCount}
+              errorsCount={MAX_MISTAKE_COUNT}
             />
           )}
         />
@@ -33,8 +31,7 @@ const App = (props) => {
         </Route>
         <Route exact path="/game">
           <GameScreen
-            questions={questions}
-            errorsCount = {errorsCount}
+            errorsCount = {MAX_MISTAKE_COUNT}
           />
         </Route>
       </Switch>
@@ -42,9 +39,6 @@ const App = (props) => {
   );
 };
 
-App.propTypes = {
-  errorsCount: PropTypes.number.isRequired,
-  questions: PropTypes.array.isRequired,
-};
+App.propTypes = {};
 
 export default App;

@@ -34,7 +34,8 @@ export default class AudioPlayer extends PureComponent {
 
     return (
       <Fragment>
-        <button className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
+        <button
+          className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
           type="button"
           disabled={isLoading}
           onClick = {onPlayButtonClick}
