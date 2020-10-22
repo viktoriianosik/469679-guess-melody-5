@@ -4,4 +4,3 @@ export const GameTypes = {
 };
 
 export const MAX_MISTAKE_COUNT = 3;
-
