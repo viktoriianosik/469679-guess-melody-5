@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Redirect} from "react-router-dom";
 import {GameTypes, MAX_MISTAKE_COUNT} from "../../const";
-import {ActionCreator} from "../../store/action";
+import {incrementStep, incrementMistake, resetGame} from "../../store/action";
 import QuestionArtist from "../question-artist/question-artist";
 import QuestionGenre from "../question-genre/question-genre";
 import Mistakes from "../mistakes/mistakes";
@@ -69,19 +69,19 @@ GameScreen.propTypes = {
   ),
 };
 
-const mapStateToProps = (state) => ({
-  step: state.step,
-  mistakes: state.mistake,
-  questions: state.questions,
+const mapStateToProps = ({GAME, DATA}) => ({
+  step: GAME.step,
+  mistakes: GAME.mistake,
+  questions: DATA.questions,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  resetGame() {
-    dispatch(ActionCreator.resetGame());
+  resetGameAction() {
+    dispatch(resetGame());
   },
   onUserAnswer(question, userAnswer) {
-    dispatch(ActionCreator.incrementStep());
-    dispatch(ActionCreator.incrementMistake(question, userAnswer));
+    dispatch(incrementStep());
+    dispatch(incrementMistake(question, userAnswer));
   }
 });
 
