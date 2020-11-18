@@ -2,7 +2,7 @@ import {extend} from "../../../utils";
 import {ActionType} from "../../action";
 
 const initialState = {
-  mistake: 0,
+  mistakes: 0,
   step: 0,
 };
 
@@ -11,7 +11,7 @@ const gameProcess = (state = initialState, action) => {
     case ActionType.INCREMENT_MISTAKE:
       return (
         extend(state, {
-          mistake: state.mistake + action.payload,
+          mistakes: state.mistakes + action.payload,
         })
       );
     case ActionType.INCREMENT_STEP:

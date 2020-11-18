@@ -7,7 +7,7 @@ import QuestionArtist from "../question-artist/question-artist";
 import QuestionGenre from "../question-genre/question-genre";
 import Mistakes from "../mistakes/mistakes";
 import withAudioPlayer from "../../hocs/with-audio-player/with-audio-player";
-import withUserAnswer from "../../hocs/with-user-answer/with-user-anser";
+import withUserAnswer from "../../hocs/with-user-answer/with-user-answer";
 import {connect} from "react-redux";
 import artistQuestionProp from "../question-artist/question-artist.prop";
 import genreQuestionProp from "../question-genre/question-genre-prop";
@@ -73,7 +73,7 @@ GameScreen.propTypes = {
 
 const mapStateToProps = ({GAME, DATA}) => ({
   step: GAME.step,
-  mistakes: GAME.mistake,
+  mistakes: GAME.mistakes,
   questions: DATA.questions,
 });
 

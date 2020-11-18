@@ -34,4 +34,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
+export {Lose};
 export default connect(null, mapDispatchToProps)(Lose);
